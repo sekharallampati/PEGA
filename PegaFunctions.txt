@@ -1,0 +1,4 @@
+Functions:
+===============================================
+@ObtainValuePair(tools, pyWorkPage, "RoleToPropertyMapping", Param.CurrentPartyRole, "ParallelApprovalGoalHours")
+@ObtainValuePair(tools, pyWorkPage, "SizingValuesRanges", "Total Weeks", "Upper Limit")
