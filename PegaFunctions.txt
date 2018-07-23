@@ -2,3 +2,62 @@ Functions:
 ===============================================
 @ObtainValuePair(tools, pyWorkPage, "RoleToPropertyMapping", Param.CurrentPartyRole, "ParallelApprovalGoalHours")
 @ObtainValuePair(tools, pyWorkPage, "SizingValuesRanges", "Total Weeks", "Upper Limit")
+@IndexInPageList(Primary.Engagement.AccountID, "AccountID", D_FinAccounts[PACOrgID:Primary.Engagement.OrganizationID].pxResults)
+@Utilities.LengthOfPageList(D_EngagementList[OrganizationID:.Engagement.OrganizationID,AccountID:.Engagement.AccountID,EngagementID:.Engagement.EngagementID,Status:"Closed"].pxResults) > 0
+@EngagementIndexInPageList()
+@String.whatComesBeforeFirst(.ProfileData.BasicInfo.PegaID , '@')
+@String.equalsIgnoreCase(OperatorID.pyUserIdentifier, Primary.Engagement.EngagementLeaderID)
+@equals(.Engagement.PracticeLeaderID, "")
+@CurrentDate("YYYY-MM-dd","UTC")+"T00:00:00.000Z"
+@lookup("pyUserName", "Data-Admin-Operator-ID", "pyUserIdentifier", .Engagement.PracticeLeaderID, "")
+@BusinessCalendar.addTime(@DateTime.CurrentDateTime(),0,12,0,0,true,"BSWDefault")
+
+@lookup("IsPLTLOptional","GS-FW-DeltaFW-Data-RegionCode","RegionCode",.Engagement.RegionCode,"")
+
+
+Classes:
+==========================================
+System-User-MyRules
+System-Queue-ServiceLevel
+Data-Admin-System-Settings
+Rule-File-Binary
+
+
+
+
+Data Pages:
+=============================
+
+D_RateCards[Org:.Engagement.OrganizationID,Acct:.Engagement.AccountID,Status:"Open"].pxResults
+D_MyEngagements[pyUserIdentifier : "pogoa@pegasystems.com"].pxResults
+
+OOTB Properties:
+=========================
+
+OperatorID.pyUserIdentifier
+
+Pages & Imp Properties:
+
+=======================================
+
+pyTopCasePage 
+pyPopulateCaseContentsWrapper
+which is the activity that is pulling the list of child objects and assignments for the assignments gadget?
+D_pyCaseContents 
+
+
+Parameters to Message Rule:
+==============================================
+"ShouldBeInBSWRange\t"+@ObtainValuePair(tools,pyWorkPage,"SizingValuesRanges","Paga Hours","Lower Limit")+""
+ShouldBeInBSWRange\t"+@ObtainValuePair(tools,pyWorkPage,"SizingValuesRange","Duration Weeks","Upper Limit")+"
+ShouldBeInBSWRange\tPega hour\t@ObtainValuePair(tools,pyWorkPage,"RoleToPropertyMapping","PL","ParallelApprovalGoalHours")
+
+
+
+URLS to open Work objects:
+============================
+
+https://vtcpdev2.rpega.com:7688/tcpdev/PRServlet?pyActivity=Work-.GetWorkByID&HarnessPurpose=Review&WorkPool= GS-OPS-DELTA-WORK&ID=ECR-01Mar2017-1
+https://vtcpdev2.rpega.com:7688/tcpdev//PRSSO/Q7i3s3uW00iwtJD9LQOLHgpP0Bz6PeaL*/!STANDARD?pyActivity=Work-.GetWorkByID&HarnessPurpose=Review&WorkPool=GS-Ops-Delta-Work&ID=ECR-24Oct2017-5
+http://vtcpclone:9085/tcpclone/PRSSO?pyActivity=Work-.GetWorkByID&HarnessPurpose=Review&WorkPool=GS-Ops-Delta-Work&ID=ECR-01Mar2017-1
+
