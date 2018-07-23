@@ -1,0 +1,21 @@
+
+GetOperatorName
+--------------------------------------------------------------------
+
+<%
+String userId = tools.getActive().getStringValue();
+String userName = pega_rules_utilities.lookup("pyUserName", "Data-Admin-Operator-ID", "pyUserIdentifier", userId, "");
+if (userName.equals(""))
+	tools.putSaveValue("UserName", userId);
+else
+	tools.putSaveValue("UserName", userName);
+%>
+
+<pega:choose>
+<pega:when test='$save(UserName) != ""'>
+	<p:r n="$SAVE(UserName)" />
+</pega:when>
+<pega:otherwise>
+	
+</pega:otherwise>
+</pega:choose>
