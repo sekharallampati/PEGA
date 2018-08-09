@@ -1,0 +1,19 @@
+truncate table Testrules.pr_sys_cache_dep;
+
+truncate table Testrules.pr_sys_cache_impl;
+
+truncate table Testdata.pr_sys_updatescache;
+
+truncate table Testrules.pr_sys_appcache_entry;
+
+truncate table Testrules.pr_sys_appcache_dep;
+
+truncate table Testrules.pr_sys_appcache_shortcut;
+
+truncate table Testrules.pr_sys_cache_entry;
+
+truncate table Testrules.pr4_rule_sysgen;
+
+truncate table Testrules.pr_assembledclasses;
+
+truncate table Testrules.pr_sys_rule_impl;
