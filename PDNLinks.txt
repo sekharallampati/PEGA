@@ -1,0 +1,7 @@
+PDN Links:
+====================================
+1. Sending meta data to Rest connector
+
+D_pxCreateFile
+https://community1.pega.com/community/product-support/question/how-send-metadata-json-format-connect-rest 
+https://community.pega.com/support/support-articles/unable-send-attachment-connect-rest

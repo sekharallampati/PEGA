@@ -6,13 +6,17 @@ Functions:
 @Utilities.LengthOfPageList(D_EngagementList[OrganizationID:.Engagement.OrganizationID,AccountID:.Engagement.AccountID,EngagementID:.Engagement.EngagementID,Status:"Closed"].pxResults) > 0
 @EngagementIndexInPageList()
 @String.whatComesBeforeFirst(.ProfileData.BasicInfo.PegaID , '@')
-@String.equalsIgnoreCase(OperatorID.pyUserIdentifier, Primary.Engagement.EngagementLeaderID)
+@String.equalsIgnoreCase(OperatorPage.pyAccessGroup, "PegaCOE:Terminated")
 @equals(.Engagement.PracticeLeaderID, "")
 @CurrentDate("YYYY-MM-dd","UTC")+"T00:00:00.000Z"
 @lookup("pyUserName", "Data-Admin-Operator-ID", "pyUserIdentifier", .Engagement.PracticeLeaderID, "")
 @BusinessCalendar.addTime(@DateTime.CurrentDateTime(),0,12,0,0,true,"BSWDefault")
 @IsInPageList("License", "OpportunityType", D_LinkedOpps.pxResults)
 @lookup("IsPLTLOptional","GS-FW-DeltaFW-Data-RegionCode","RegionCode",.Engagement.RegionCode,"")
+@InstanceExists(preCheckPage)
+@IsValidOperatorID();
+@hasMessages(Primary)
+@clearMessages()
 
 
 Classes:

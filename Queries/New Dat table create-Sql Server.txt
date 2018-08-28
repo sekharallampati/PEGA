@@ -1,0 +1,28 @@
+CREATE TABLE Testdata.TestTableName
+  (
+    pxCommitDateTime DATETIME ,
+    pxCreateDateTime DATETIME ,
+    pxCreateOpName   VARCHAR (128) ,
+    pxCreateOperator VARCHAR (128) ,
+    pxCreateSystemID VARCHAR (32) ,
+    pxInsName        VARCHAR (128) ,
+    pxObjClass       VARCHAR (96) ,
+    pxSaveDateTime   DATETIME ,
+    pxUpdateDateTime DATETIME ,
+    pxUpdateOpName   VARCHAR (128) ,
+    pxUpdateOperator VARCHAR (128) ,
+    pxUpdateSystemID VARCHAR (32) ,
+    pyLabel          VARCHAR (64) ,
+    pyRuleSetName    VARCHAR (64) ,
+    pzInsKey         VARCHAR (255) NOT NULL ,
+    pzPVStream 		 VARBINARY ,
+    MethodologyUsed VARCHAR (256) ,
+	CONSTRAINT DLT_MethodologyUsed_PK PRIMARY KEY ( pzInsKey ) 
+  );
+
+  
+CREATE INDEX idx_TestTableName ON Testdata.TestTableName
+  (
+    pxObjClass ASC ,
+    pzInsKey ASC
+  );
