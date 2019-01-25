@@ -1,0 +1,278 @@
+<% 
+tools.appendString( "<HTML>" );
+tools.appendString( "<head><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"CHARSET=UTF-8\">" );
+// to avoid 03-02-01 becoming 03/02/2001 etc....
+tools.appendString( "<style>" );
+tools.appendString( ".excel-hide-row{display:none;}" );
+tools.appendString( ".excelText{vnd.ms-excel.numberformat:@;}" );
+tools.appendString( ".excel-datetime{vnd.ms-excel.numberformat:m/d/yyyy h:mm AM/PM}" );
+tools.appendString( ".excel-date{vnd.ms-excel.numberformat:m/d/yyyy}" );
+tools.appendString( ".excel-timeofday{vnd.ms-excel.numberformat:hh:mm}" );
+tools.appendString( ".excel-number{vnd.ms-excel.numberformat:General;}" );
+tools.appendString( "</style>" );
+tools.appendString( "</head> ");
+
+tools.appendString( "<TABLE cellspacing='0' cellpadding='1' width='100%' border='1' style='border-collapse: collapse;'>" );
+
+// Build the Headers (Columns)...
+ClipboardPage cbpMainPage = tools.getStepPage();
+int n = tools.findPage("D_RolesList").getProperty("pxResultCount").toInteger();
+int cbpFieldCount = n+17;
+
+// Buffer to identify DateTime Column headers
+StringBuffer bufDateTimeHeaders = new StringBuffer( 100 );
+
+// Array of columns to be displayed
+int nColumnsToDisplayCount = n+17;
+
+// Array of the columns that will be displayed
+String[] strDisplayCols = new String[cbpFieldCount];
+String[] strDisplayCols_Date = new String[cbpFieldCount];
+String[] strDataTypes = new String[cbpFieldCount];
+String[] strHTMLProperties = new String[cbpFieldCount];
+String[] strHTMLPropParamRefs = new String[cbpFieldCount];
+
+tools.appendString( "<TR><TD align='left' colspan='" + cbpFieldCount + "' style='font-weight: bold; font-size: 24;'>" );
+tools.appendString( tools.getLocalizedTextForString(".pyCaption", "Rate Card Search") + "</TD></TR>" );
+
+
+tools.appendString("<tr><td colspan='" + cbpFieldCount + "' style=' font-size: 8pt;'>"+tools.getLocalizedTextForString(".pyCaption","Filters"));
+tools.putSaveValue("PDFFilterLogic","true");
+tools.appendProperty(cbpMainPage.getProperty("pyTemplateInputBox"), "RRFilters_Logic", false);
+tools.putSaveValue("PDFFilterLogic","");
+tools.appendString("</td></tr>");
+
+tools.appendString( "<TR>" );
+
+String TDStyle = ">";
+String strFieldClassName = "";
+String strFieldPropertyName = "";
+int i=0;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Case ID" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".pyID";
+strDisplayCols_Date[i] = "pyID";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Status" + "</TD>" );
+strHTMLProperties[i] = "GetLocalizedValue";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".pyStatusWork";
+strDisplayCols_Date[i] = "pyStatusWork";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Organization" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".OrganizationID";
+strDisplayCols_Date[i] = "OrganizationID";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Account" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".AccountID";
+strDisplayCols_Date[i] = "AccountID";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Practice Leader" + "</TD>" );
+strHTMLProperties[i] = "DLT-GetOperatorName";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".PracticeLeader";
+strDisplayCols_Date[i] = "PracticeLeader";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Profit Center" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".RegionCode";
+strDisplayCols_Date[i] = "RegionCode";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Tier" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".Tier";
+strDisplayCols_Date[i] = "Tier";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Tier Description" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".TierDescription";
+strDisplayCols_Date[i] = "TierDescription";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Included in MSA" + "</TD>" );
+strHTMLProperties[i] = "YesOrNoOrBlank";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".IncludedInMSA";
+strDisplayCols_Date[i] = "IncludedInMSA";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Rate Source" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".RateSource";
+strDisplayCols_Date[i] = "RateSource";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Contract ID" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".ContractID";
+strDisplayCols_Date[i] = "ContractID";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Rates Expire" + "</TD>" );
+strHTMLProperties[i] = "StaffingDateFormat";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".RatesExpireDate";
+strDisplayCols_Date[i] = "RatesExpireDate";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Next Increase" + "</TD>" );
+strHTMLProperties[i] = "StaffingDateFormat";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".NextIncreaseDate";
+strDisplayCols_Date[i] = "NextIncreaseDate";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Expenses" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".Expenses";
+strDisplayCols_Date[i] = "Expenses";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Currency" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".Currency";
+strDisplayCols_Date[i] = "Currency";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "Rate Type" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".RateType";
+strDisplayCols_Date[i] = "RateType";
+i++;
+
+tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + "No of Hours" + "</TD>" );
+strHTMLProperties[i] = "pxTextInput";
+strHTMLPropParamRefs[i] = "";
+strDataTypes[i] = "text";
+strDisplayCols[i] = ".NoOfHours";
+strDisplayCols_Date[i] = "NoOfHours";
+i++;
+
+for(int k=1;k<=n;k++)
+{	
+	String pre_roleCode = tools.findPage("D_RolesList.pxResults("+k+")").getProperty("RoleCode").toString();
+	String roleCode = pega_rules_string.replaceAll(pre_roleCode,"-","_");
+	String roleName = tools.findPage("D_RolesList.pxResults("+k+")").getProperty("RoleName").toString();
+	tools.appendString( "<TD bgColor='#dcdcdc' class='excelText'" + TDStyle + roleName + "</TD>" );
+	strHTMLProperties[i] = "pxTextInput";
+	strHTMLPropParamRefs[i] = "";
+	strDataTypes[i] = "text";
+	strDisplayCols[i] = ".Rates("+roleCode+").Rate";
+	strDisplayCols_Date[i] = "Rate";
+	i++;
+}
+
+tools.appendString( "</TR>" );
+
+// The table's "header" is done...
+// Now add the data...
+ClipboardProperty cbppResults = cbpMainPage.getProperty( "pxResults" );
+
+String strDateTimeHeaders = bufDateTimeHeaders.toString();
+
+// Each row of data...
+java.util.Iterator itResults = cbppResults.iterator();
+int nResultCount = 0;
+if(!itResults.hasNext())
+{
+	tools.appendString("<TR style='border:0px;background-color:white'>");
+	tools.appendString("<TD colspan=" + nColumnsToDisplayCount + ">");
+	tools.appendString(tools.getLocalizedTextForString(".pyMessageLabel","No matching data was found."));
+	tools.appendString("</TD></TR>");
+}
+else
+{
+while ( itResults.hasNext() )
+{              tools.appendString( "<TR>" );
+                
+                ClipboardProperty cbppThisResultCurrentRow = (ClipboardProperty)itResults.next();
+                ClipboardPage cbppThisResultCurrentRowAsPage = cbppThisResultCurrentRow.getPageValue();
+
+                for ( int j = 0 ; j < nColumnsToDisplayCount ; j++ )
+                {
+                                String strPropNameToDisplay = strDisplayCols[j];
+                                boolean isDate = false;
+                                if ( strDateTimeHeaders.indexOf( strDisplayCols_Date[j] ) > -1 )
+                                {              try
+                                                {              java.util.Date theDate = tools.getDateTimeUtils().parseDateTimeStamp( cbppThisResultCurrentRow.getStringValue( strDisplayCols[j] ) );
+                                                                
+                                                                if ( theDate != null )
+                                                                                isDate = true;
+                                                }
+                                                catch ( Exception ex )
+                                                {
+                                                }
+                                }
+                                // Append start of cell
+                                String strClass = pega_reporting_reportdata.pzGetExcelClass(isDate?"datetime":strDataTypes[j]);
+				
+				String strCurrPropRef = cbppThisResultCurrentRowAsPage.getProperty( strPropNameToDisplay ).getReference();  
+				
+				StringMap htmProp = new HashStringMap();
+				htmProp.putString("pzInput", "Display");
+				htmProp.putString("pxObjClass", "Rule-Obj-HTML");
+				htmProp.putString("pyClassName", "Rule-Obj-Report-Definition");
+				htmProp.putString("pyStreamName", "pzDisplayPropValue");   
+				
+				tools.putParamValue("propRef",strCurrPropRef);
+				tools.putParamValue("dataType",strDataTypes[j]);
+				tools.putParamValue("uiIndex",(j+1)+"" );
+				
+				String strOut = tools.getStream(htmProp,null);
+				
+				if(strClass.equals("excel-number")){
+					try{Double.parseDouble(strOut);}catch(NumberFormatException nfe){strClass="excelText";}
+				}else if(strClass.equals("excel-datetime") || strClass.equals("excel-date")){
+					if(tools.getParamValue("matched").equalsIgnoreCase("false")){
+						strClass="excelText";
+					}
+				}
+				
+				tools.appendString( "<TD class='" + strClass + "'" + TDStyle );
+				//tools.appendString(strOut);	
+				tools.appendProperty(cbppThisResultCurrentRowAsPage.getProperty( strPropNameToDisplay ), strHTMLProperties[j], false);	
+				tools.appendString( "<div style='width:1px'></div></TD>" );
+         }
+         tools.appendString( "</TR>" );
+}
+}
+tools.appendString( "</TABLE>" );
+tools.appendString( "</HTML>" );
+ %>

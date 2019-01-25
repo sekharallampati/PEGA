@@ -1,0 +1,6 @@
+Get categories count:
+===================================================
+select pycategory, count(*)
+from dadata.pc_link_attachment
+where pzinskey like '%ESU-22AUG2018%'
+group by pycategory 

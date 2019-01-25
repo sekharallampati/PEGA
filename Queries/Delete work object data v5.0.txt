@@ -1,0 +1,297 @@
+-- DELETE BASE DELTA CASES  --
+DELETE from pc_link_attachment WHERE pxlinkedclassfrom like 'GS-%';
+DELETE from pc_data_workattach WHERE pxinsname like 'GS-%';
+DELETE from pc_index_workparty WHERE pxinsindexedclass like 'GS-%';
+DELETE from pc_history_work WHERE pyworkclass like 'GS-%';
+DELETE from pc_assign_worklist WHERE pxrefobjectclass like 'GS-%';
+DELETE from pc_assign_workbasket WHERE pxrefobjectclass like 'GS-%';
+delete from pr_data where pxObjClass = 'Data-Corr-Email' and pxInsName LIKE 'GS-%';
+delete from DLT_EAPAssessment;
+delete from DLT_EAPCheckpoint;
+delete from DLT_EngClinicRequest;
+delete from DLT_EAPRequest;
+delete from DLT_MustFix;
+delete from DLT_TriageEvent;
+delete from DLT_Triage;
+delete from DLT_ESDItem;
+delete from DLT_ESDRegion;
+delete from DLT_ESDControl;
+delete from DLT_EngagementProducts;
+delete from DLT_Engagement;
+truncate table pr_index_gs_fw_deltafw_data_ch;
+truncate table bsw_index_main;
+truncate table bsw_index_phase;
+truncate table bsw_index_phaseroles;
+truncate table DLT_history_work;
+truncate table DLT_work;
+DELETE from pc_data_uniqueid where pyprefix = 'ENGAGE-' or pyprefix LIKE 'ECR-%' or pyprefix LIKE 'RSK-%' or pyprefix LIKE 'EAP-%'; 
+DELETE from pc_data_uniqueid where pyprefix LIKE 'TSK-%' or pyprefix LIKE 'TRI-%' or pyprefix LIKE 'ECP-%' or pyprefix LIKE 'EA-%';
+DELETE from pc_data_uniqueid where pyprefix LIKE 'ESD-%' or pyprefix LIKE 'ESR-%' or pyprefix LIKE 'TRG-%' or pyprefix LIKE 'MF-%';
+
+
+--------------------------------------------------------------------------------------
+-                                                                                    -
+-                         DELETE ESD & Triage CASES ONLY                             -
+-                                                                                    -
+--------------------------------------------------------------------------------------
+delete from DLT_TriageEvent;
+delete from DLT_Triage;
+delete from DLT_ESDItem;
+delete from DLT_ESDRegion;
+delete from DLT_ESDControl;
+delete from pc_link_attachment where pxLinkedClassFrom = 'GS-Ops-Delta-Work-ESDControl' or pxLinkedClassFrom = 'GS-Ops-Delta-Work-ESDRegion' or pxLinkedClassFrom = 'GS-Ops-Delta-Work-Triage';
+delete from pc_data_workattach where pxInsName LIKE 'GS-OPS-DELTA-WORK ESD-%';
+delete from pr_data where pxObjClass = 'Data-Corr-Email' and pxInsName LIKE 'GS-OPS-DELTA-WORK NA-%' and pxInsName LIKE 'GS-OPS-DELTA-WORK EU-%' and pxInsName LIKE 'GS-OPS-DELTA-WORK TRG-%';
+delete from DLT_work where pxObjClass like '%Triage%' or pxObjClass like '%ESD%';
+delete from pc_assign_workbasket where pxassignedoperatorid = 'GSTriageWB';
+DELETE from pc_data_uniqueid where pyprefix LIKE 'ESD-%' or pyprefix LIKE 'ESR-%' or pyprefix LIKE 'TRG-%' or pyprefix LIKE 'NA-%' or pyprefix LIKE 'EU-%';
+delete from DLT_history_work where pxInsName like '%ESD-%' or pxInsName LIKE '%ESR-%' or pxInsName LIKE '%TRG-%' or pxInsName LIKE '%NA-%' or pxInsName LIKE '%EU-%';
+
+
+
+--------------------------------------------------------------------------------------
+-                                                                                    -
+-                            DELETE Staffing CASES ONLY                              -
+-                                                                                    -
+--------------------------------------------------------------------------------------
+delete from pc_assign_workbasket where pxRefObjectClass like 'GS-FW-DELTAFW-WORK-STAFFING%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-STAFFING%';
+delete from pc_assign_worklist where pxRefObjectClass like 'GS-FW-DELTAFW-WORK-STAFFING%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-STAFFING%';
+truncate table Staff_work_history;
+truncate table Staff_work;
+truncate table pr_index_Staffing_Resources;
+truncate table pc_work_social;
+delete from pc_data_uniqueid where pyPrefix like 'SS-%' or pyPrefix like 'RR-%';
+
+
+--------------------------------------------------------------------------------------
+-                                                                                    -
+-                   DELETE PFF/QR Nomination CASES ONLY                              -
+-                    WorkObjects:PF -> PFR -> PFRF ; QR                              -
+-                                                                                    -
+--------------------------------------------------------------------------------------
+
+delete from pc_assign_worklist where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-PROJECTFEEDBACK%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-PROJECTFEEDBACK%';
+delete from pc_assign_workbasket where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-PROJECTFEEDBACK%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-PROJECTFEEDBACK%';
+delete from pc_assign_worklist where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-PROJECTRESOURCE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-PROJECTRESOURCE%';
+delete from pc_assign_workbasket where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-PROJECTRESOURCE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-PROJECTRESOURCE%' ;
+delete from pc_assign_worklist where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-QUARTERLYRECOGNITION%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-QUARTERLYRECOGNITION%';
+delete from pc_assign_workbasket where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-QUARTERLYRECOGNITION%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-QUARTERLYRECOGNITION%';
+
+
+--History
+truncate table projectfeedback_history;
+truncate table projectresource_history;
+truncate table recognition_history;
+
+
+--Work
+truncate table projectfeedback_work;
+truncate table projectresource_work;
+truncate table recognition_work;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from pc_work_social where pyIndirectObjectID like 'GS-FW-DELTAFW-WORK-PROJECTFEEDBACK%' or pyIndirectObjectID like 'GS-OPS-DELTA-WORK-PROJECTFEEDBACK%' ;
+delete from pc_work_social where pyIndirectObjectID like 'GS-FW-DELTAFW-WORK-PROJECTRESOURCE%' or pyIndirectObjectID like 'GS-OPS-DELTA-WORK-PROJECTRESOURCE%';
+delete from pc_work_social where pyIndirectObjectID like 'GS-FW-DELTAFW-WORK-QUARTERLY%' or pyIndirectObjectID like 'GS-OPS-DELTA-WORK-QUARTERLY%';
+
+--Delete Unique ID
+delete from pc_data_uniqueid where pyPrefix like 'PF%';
+delete from pc_data_uniqueid where pyPrefix like 'QR%-';
+
+--Delete Work Attachments
+delete from pc_data_workattach where pxInsName like 'GS-FW-DELTAFW-WORK-PROJECTFEEDBACK%';
+delete from pc_data_workattach where pxInsName like 'GS-FW-DELTAFW-WORK-PROJECTRESOURCE%';
+delete from pc_data_workattach where pxInsName like 'GS-FW-DELTAFW-WORK-QUARTERLY%';
+delete from pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-PROJECTFEEDBACK%';
+delete from pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-PROJECTRESOURCE%';
+delete from pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-QUARTERLY%';
+
+
+delete from pc_link_attachment where pxInsName like 'GS-FW-DELTAFW-WORK-PROJECTFEEDBACK%';
+delete from pc_link_attachment where pxInsName like 'GS-FW-DELTAFW-WORK-PROJECTRESOURCE%';
+delete from pc_link_attachment where pxInsName like 'GS-FW-DELTAFW-WORK-QUARTERLY%';
+delete from pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-PROJECTFEEDBACK%';
+delete from pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-PROJECTRESOURCE%';
+delete from pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-QUARTERLY%';
+
+
+
+--------------------------------------------------------------------------------------
+-                                                                                    -
+-                         DELETE ESU Work Objects ONLY                             -
+-                                                                                    -
+--------------------------------------------------------------------------------------
+
+delete from tcpdata.pc_assign_worklist where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-ENGSTATUSUPDATE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-ENGSTATUSUPDATE%';
+delete from tcpdata.pc_assign_workbasket where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-ENGSTATUSUPDATE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-ENGSTATUSUPDATE%';
+
+
+--History
+truncate table tcpdata.engstatus_history;
+
+
+--Work
+truncate table tcpdata.engstatus_work;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from tcpdata.pc_work_social where pyIndirectObjectID like 'GS-FW-DELTAFW-WORK-ENGSTATUSUPDATE%' or pyIndirectObjectID like 'GS-OPS-DELTA-WORK-ENGSTATUSUPDATE%' ;
+
+--Delete Unique ID
+delete from tcpdata.pc_data_uniqueid where pyPrefix like 'ESU%';
+
+--Delete Work Attachments
+delete from tcpdata.pc_data_workattach where pxInsName like 'GS-FW-DELTAFW-WORK-ENGSTATUSUPDATE%';
+
+
+delete from tcpdata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-ENGSTATUSUPDATE%';
+
+
+---------------------------------------------------------------------------------------
+-                                                                                     -
+-                         DELETE PRIAGE Work Objects ONLY                             -
+-                                                                                     -
+---------------------------------------------------------------------------------------
+
+delete from tcpdata.pc_assign_worklist where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-NEWIAGE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE%';
+delete from tcpdata.pc_assign_workbasket where pxRefObjectKey like 'GS-FW-DELTAFW-WORK-NEWIAGE%' or pxRefObjectClass like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE%';
+
+--History
+truncate table tcpdata.DLT_History_Priage;
+
+--Work
+truncate table tcpdata.DLT_Work_Priage;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from tcpdata.pc_work_social where pyIndirectObjectID like 'GS-FW-DELTAFW-WORK-NEWIAGE%' or pyIndirectObjectID like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE%' ;
+
+--Delete Unique ID
+delete from tcpdata.pc_data_uniqueid where pyPrefix like 'PRG%';
+
+--Delete Work Attachments
+delete from tcpdata.pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE%';
+
+delete from tcpdata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE%';
+
+
+---------------------------------------------------------------------------------------
+-                                                                                     -
+-                         DELETE PRIAGE Single Work Object ONLY                             -
+-                                                                                     -
+---------------------------------------------------------------------------------------
+
+-- Find and replace the PRG-01FEB2016-1 to the specific WO which needs to be removed 
+
+delete from tcpdata.pc_assign_worklist where pxRefObjectKey like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+delete from tcpdata.pc_assign_workbasket where pxRefObjectKey like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+
+--History
+delete from tcpdata.DLT_History_Priage where pxHistoryForReference like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+
+--Work
+delete from tcpdata.DLT_Work_Priage where pzInsKey like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from tcpdata.pc_work_social where pyIndirectObjectID like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+
+--Delete Unique ID **need to run only if all the WO for that specific day needs to be removed or no WO there on that specific day
+-- delete from tcpdata.pc_data_uniqueid where pyPrefix like 'PRG-01FEB2016%'
+
+--Delete Work Attachments
+delete from tcpdata.pc_data_workattach where pxRefObjectKey like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1';
+
+delete from tcpdata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-NEWIAGE-PRIAGE PRG-01FEB2016-1%';
+
+
+--------------------------------------------------------------------------------------
+-                                                                                    -
+-                            DELETE PROFILE CASES ONLY                                 -
+-                                                                                    -
+--------------------------------------------------------------------------------------
+
+delete from pc_assign_worklist where pxRefObjectKey like 'GS-OPS-DELTA-WORK-CONSULTANTPROFILE CPRO-PALS3%';
+delete from Cprofile_history where pxHistoryForReference like 'GS-OPS-DELTA-WORK-CONSULTANTPROFILE CPRO-PALS3%';
+delete from Cprofile_work where pyID like 'CPRO-PALS3%';
+delete from CProfile_Search_Index where pxInsIndexedKey like 'GS-OPS-DELTA-WORK-CONSULTANTPROFILE CPRO-PALS3%';
+delete from pc_data_uniqueid where pyPrefix like 'CPRO-PALS3%';
+
+
+---------------------------------------------------------------------------------------
+-                                                                                     -
+-                         DELETE Rate Card Work Objects ONLY                             -
+-                                                                                     -
+---------------------------------------------------------------------------------------
+
+delete from tcpdata.pc_assign_worklist where pxRefObjectClass like 'GS-OPS-DELTA-WORK-RATECARD%';
+delete from tcpdata.pc_assign_workbasket where pxRefObjectClass like 'GS-OPS-DELTA-WORK-RATECARD%';
+
+--History
+truncate table tcpdata.RateCard_History;
+
+--Work
+truncate table tcpdata.RateCard_Work;
+
+--Index
+truncate table tcpdata.Index_Rates;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from tcpdata.pc_work_social where pyIndirectObjectID like 'GS-OPS-DELTA-WORK-RATECARD%' ;
+
+--Delete Unique ID
+delete from tcpdata.pc_data_uniqueid where pyPrefix like 'RC-%';
+
+--Delete Work Attachments
+delete from tcpdata.pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-RATECARD%';
+
+delete from tcpdata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-RATECARD%';
+
+---------------------------------------------------------------------------------------
+-                                                                                     -
+-                         DELETE ORGANIZATION Work Objects ONLY                             -
+-                                                                                     -
+---------------------------------------------------------------------------------------
+
+delete from dadata.pc_assign_worklist where pxRefObjectClass like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+delete from dadata.pc_assign_workbasket where pxRefObjectClass like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+
+--History
+truncate table dadata.Organization_History;
+
+--Work
+truncate table dadata.Organization_Work;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from dadata.pc_work_social where pyIndirectObjectID like 'GS-OPS-DELTA-WORK-ACCOUNT%' ;
+
+--Delete Unique ID
+delete from dadata.pc_data_uniqueid where pyPrefix like 'ORG-%';
+
+--Delete Work Attachments
+delete from dadata.pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+
+delete from dadata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+
+---------------------------------------------------------------------------------------
+-                                                                                     -
+-                         DELETE ACCOUNT Work Objects ONLY                             -
+-                                                                                     -
+---------------------------------------------------------------------------------------
+
+delete from dadata.pc_assign_worklist where pxRefObjectClass like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+delete from dadata.pc_assign_workbasket where pxRefObjectClass like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+
+--History
+truncate table dadata.Account_History;
+
+--Work
+truncate table dadata.Account_Work;
+
+--Social Tags -- shouldn't be any of these, but just in case
+delete from dadata.pc_work_social where pyIndirectObjectID like 'GS-OPS-DELTA-WORK-ACCOUNT%' ;
+
+--Delete Unique ID
+delete from dadata.pc_data_uniqueid where pyPrefix like 'ACC-%';
+
+--Delete Work Attachments
+delete from dadata.pc_data_workattach where pxInsName like 'GS-OPS-DELTA-WORK-ACCOUNT%';
+
+delete from dadata.pc_link_attachment where pxInsName like 'GS-OPS-DELTA-WORK-ACCOUNT%';

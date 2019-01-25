@@ -18,22 +18,12 @@ Functions:
 @hasMessages(Primary)
 @clearMessages()
 
-
-Classes:
-==========================================
-System-User-MyRules
-System-Queue-ServiceLevel
-Data-Admin-System-Settings
-Rule-File-Binary
+@Utilities.LengthOfPageList(.BizTrgMeeting.RequiredAttendees) > 0
 
 
 
+"At least one Attendee Required"
 
-Data Pages:
-=============================
-
-D_RateCards[Org:.Engagement.OrganizationID,Acct:.Engagement.AccountID,Status:"Open"].pxResults
-D_MyEngagements[pyUserIdentifier : "operatorID"].pxResults
 
 OOTB Properties:
 =========================

@@ -1,0 +1,8 @@
+Top :- Used To refer Top level page of Current Context.
+Parent: Used To refer parent page of Current Context
+Primary: Refer current context page
+		EX: If your in "pyWorkpage.Emlploye.Address" Context
+			TOP-> pyWorkpage
+			Parent->Employee
+			Primary-> Address
+pyParentPageName: used in dapapropagation during child work object creation			
