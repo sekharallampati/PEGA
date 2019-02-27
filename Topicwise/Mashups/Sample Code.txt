@@ -1,0 +1,29 @@
+!-- ********************** Begin Pega content ********************** -->
+<script src ='https:/****/PRServlet?pyActivity=pzIncludeMashupScripts'></script>
+<div data-pega-gadgetname ='PegaGadget' 
+data-pega-action ='createNewWork' 
+data-pega-action-param-classname ='PegaSF-Work-Program-Accounts' 
+data-pega-action-param-flowname ='pyStartCase' 
+data-pega-isdeferloaded ='false' 
+data-pega-applicationname ='CIAAdmin' 
+data-pega-threadname ='STANDARD' 
+data-pega-resizetype ='stretch' 
+data-pega-url ='https:/PRServlet' ></div>
+
+<!-- ********************** End Pega content ********************** -->
+
+
+<!-- ********************** Begin Pega content ********************** -->
+<script src ='https:///PRServlet?pyActivity=pzIncludeMashupScripts'></script>
+<div data-pega-gadgetname ='PegaGadget' 
+data-pega-action ='display' 
+data-pega-action-param-classname='Data-Portal'
+data-pega-action-param-harnessname ='CARListForDA'
+data-pega-action-param-parameters = '{"PacOrgID":"<%= tools.getParamValue("AccountID")%>"}'
+data-pega-isdeferloaded ='false' 
+data-pega-applicationname ='CIAAdmin' 
+data-pega-threadname ='STANDARD' 
+data-pega-resizetype ='stretch' 
+data-pega-url ='https:///PRServlet'></div>
+
+<!-- ********************** End Pega content ********************** -->
