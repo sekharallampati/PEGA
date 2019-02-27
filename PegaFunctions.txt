@@ -17,12 +17,18 @@ Functions:
 @IsValidOperatorID();
 @hasMessages(Primary)
 @clearMessages()
-
 @Utilities.LengthOfPageList(.BizTrgMeeting.RequiredAttendees) > 0
 
+Scripts:
+------------------------------
+"pega.ui.HarnessActions.addFlowFromActionsMenu" 
+<a  class="itemTwoRowTop" title='<p:r n=".pyMemo" m="normal"/>' href="#" onclick="pega.ui.HarnessActions.doAttachmentSingleClick('<p:r n=".pxListSubscript" />', '<p:r n=".pxObjClass" />', '<p:r n=".pxInsName" />', '<p:r n=".pzInsKey" />', null, null)">
+<pega:reference name=".pyMemo" mode="display" format="pzCMEllipsis"><pega:param name="CharLength" value="200"/>
+</pega:reference></nobr></a>
 
 
-"At least one Attendee Required"
+
+
 
 
 OOTB Properties:
