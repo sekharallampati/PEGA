@@ -1,0 +1,49 @@
+<script....></script> + <div .... ></div>
+
+//Mashup attributes
+
+data-pega-gadgetname
+data-pega-applicationname
+data-pega-threadname
+data-pega-action
+
+display
+logoff
+openAssignment - data-pega-action-param-key attribute
+createNewWork - data-pega-action-param-flowname
+openWorkItem - data-pega-workid
+openWorkByHandle -  data-pega-action-param-key
+openWorkByURL - data-pega-action-param-query
+getNextWork - get next work for user WL/WB
+
+
+
+//Action-specific attributes
+
+data-pega-isdeferloaded (optional) - false
+data-pega-resizetype (optional) - strech
+data-pega-targettype -- _self, _popup ----- _self
+data-pega-popupoptions
+
+data-pega-targettype="_popup"
+data-pega-popupoptions="height=200; width=400; toolbar=no; menubar=no;"
+
+			data-pega-action-param-classname
+			data-pega-action-param-model
+			data-pega-action-param-flowname
+			data-pega-action-param-harnessname
+			data-pega-action-param-query
+			data-pega-action-param-isreadonly
+			data-pega-action-param-key
+			data-pega-action-param-workid
+			data-pega-action-param-parameters
+
+
+​//Gadget attributes for events
+
+data-pega-event-onload - call a function when it loads the gadget
+data-pega-event-onbeforeload-  invokes function before loading gadget
+data-pega-event-onconfirm - invokes when the gadget displays a Confirm harness
+data-pega-event-onclose - invokes when the gadget closes a harness.
+data-pega-event-onresize -- invoked when the gadget resizes, Div must be stretch for this event
+
