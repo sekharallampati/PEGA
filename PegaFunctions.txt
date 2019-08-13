@@ -18,23 +18,27 @@ Functions:
 @hasMessages(Primary)
 @clearMessages()
 @Utilities.LengthOfPageList(.BizTrgMeeting.RequiredAttendees) > 0
-
-Scripts:
-------------------------------
-"pega.ui.HarnessActions.addFlowFromActionsMenu" 
-<a  class="itemTwoRowTop" title='<p:r n=".pyMemo" m="normal"/>' href="#" onclick="pega.ui.HarnessActions.doAttachmentSingleClick('<p:r n=".pxListSubscript" />', '<p:r n=".pxObjClass" />', '<p:r n=".pxInsName" />', '<p:r n=".pzInsKey" />', null, null)">
-<pega:reference name=".pyMemo" mode="display" format="pzCMEllipsis"><pega:param name="CharLength" value="200"/>
-</pega:reference></nobr></a>
-
-
+@pyRemoveDuplicatesFromPagelist(Primary,".pxResults","CloudType")
+@(Pega-RULES:Page).PageExistsWithClass(Temp, tools)
+@(DeltaFW:DELTAUtilities).IsValidOperatorID(.PracticeLeaderID) !=true
+@IsDuplicateRecordExists(Param.OrgID, Param.AccountID, Param.EngagementID, pyWorkPage.ESDRegion.ESDTreeGridList)
+@Utilities.countInPageListWhen("ContainsResolved", Primary.pxResults)
+@(Pega-Gadgets:pxDataManipulate).pxStringCSVFromPageList(D_CustomerHierarchyList[type:"org",id:Param.SalesOrgID].ResultList.FinAccountList, "id")
+@Utilities.countInPageList("Active","FinEngStatus",EngPage.pxResults)
 
 
 
 
-OOTB Properties:
-=========================
+<pega:lookup property=".pyCaption" value="resultfororganizations" />
 
-OperatorID.pyUserIdentifier
+
+
+Date:
+===
+Local.weekDay == 2 ? @addToDate(.ESDControl.StartDate, 0, 0, 0, 0) : @addToDate(.ESDControl.StartDate, 2-Local.weekDay, 0, 0, 0)
+@FormatDateTime(.ESDControl.StartDate, "MMM dd, yyyy", null, null)
+
+
 
 Pages & Imp Properties:
 

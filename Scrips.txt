@@ -1,0 +1,13 @@
+Scripts:
+------------------------------
+1: To start a flow from other action:
+
+Function name: "pega.ui.HarnessActions.addFlowFromActionsMenu" 
+Params: flowType,flowClass
+
+2.
+<a  class="itemTwoRowTop" title='<p:r n=".pyMemo" m="normal"/>' href="#" onclick="pega.ui.HarnessActions.doAttachmentSingleClick('<p:r n=".pxListSubscript" />', '<p:r n=".pxObjClass" />', '<p:r n=".pxInsName" />', '<p:r n=".pzInsKey" />', null, null)">
+<pega:reference name=".pyMemo" mode="display" format="pzCMEllipsis"><pega:param name="CharLength" value="200"/>
+</pega:reference></nobr></a>
+
+3.

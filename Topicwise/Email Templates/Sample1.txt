@@ -1,0 +1,119 @@
+<pega:include name="Email_Style.Email" type="Rule-Corr-Fragment"></pega:include>
+<center style="width: 100%; background: #ececec;">
+<div style="max-width: 880px; margin: auto;"><!--[if (gte mso 9)|(IE)]>
+<table cellspacing="0" cellpadding="0" border="0" width="880" align="center">
+<tr>
+<td>
+<![endif]--><!-- Email Body : BEGIN -->
+<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="max-width: 880px;" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" alt="alt_text" border="0" height="" style="width: 100%; max-width: 880px;" width="880"><pega:include name="PegaConsultingBanner" type="Rule-HTML-Paragraph"></pega:include></td>
+		</tr>
+		<!-- ======= start padding between sections ======= -->
+		<tr>
+			<td>
+			<table bgcolor="#ececec" border="0" cellpadding="0" cellspacing="0" style="background-color: #ececec;" width="100%">
+				<tbody>
+					<tr>
+						<td height="10" style="font-size: 14px; line-height: 1.4;" width="100%">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<!-- ======= END padding between sections ======= -->
+		<tr>
+			<td>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td style="padding: 14px; font-family: 'Open Sans',Georgia, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 1.4; color: #555555;">
+                            <pega:include name="AutoselectedListContent" type="Rule-HTML-Paragraph"></pega:include>
+                        </td>
+						<br />
+					</tr>
+					<table cellspacing="0" cellpadding="0" width="100%" style="font-size: 14px;text-align: left; border: 1px solid #bbbbbb;">
+						<tr>
+							<td style="border: 1px solid #bbbbbb; width:15%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;color:#9a8582;vertical-align:top;;text-align:left; padding:5px;">Regional Director</td>
+								<td style="border: 1px solid #bbbbbb; width:85%;">
+									<table cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+										<tbody>
+											<tr>
+												<td style="width:75%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;color:#9a8582;vertical-align:top;text-align:left; padding: 1px 5px 5px 5px;"> Organization / Account / Engagement</td>
+												<td style="width:15%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;color:#9a8582;vertical-align:top;text-align:left; padding: 1px 5px 5px 5px;"> Overall Status</td>
+												<td style="width:10%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;color:#9a8582;vertical-align:top;text-align:left; padding: 1px 5px 5px 5px;"> RFT</td>
+											</tr>	
+										</tbody>
+									</table>
+							    </td>
+							</td>
+						</tr>	
+					</table>	
+					<table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-size: 14px;text-align: left;">
+					<pega:forEach name="RegionPage.ESDTreeList">
+						<tr>
+							<td style="word-wrap:break-word; width:15%; border: 1px solid #bbbbbb; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;color:#000;vertical-align:top;text-align:left;padding:5px;"> <pega:reference name="$this.Name" /> 
+							<td style="border: 1px solid #bbbbbb; width:85%;">
+								<table cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+									<tbody>
+									<pega:forEach name="$this.ESDTreeList">
+										<tr style="border-bottom: 1px solid #bbbbbb;">
+											<td style="word-wrap:break-word;font-family: 'Open Sans',Georgia, sans-serif; width:75%; font-size:14px;font-weight:400;line-height:1.4;color:#000;vertical-align:top;text-align:left;padding:5px;"><pega:reference name="$this.OrgID"/> / <pega:reference name="$this.AccID"/> / <pega:reference name="$this.EngID"/></td>
+											<td style="word-wrap:break-word;font-family: 'Open Sans',Georgia, sans-serif; width:15%; font-size:14px;font-weight:400;line-height:1.4;color:#000;vertical-align:top;text-align:left;padding:5px;">
+												<table style="width:100%; height:20px;" width="50%" height="20px">
+													<tbody>
+														<tr>
+															<td style="width:30%;">&nbsp;</td>
+															<pega:when name="$this.OverallStatus == 'Green'" >
+															<td style="width:40%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;background:#02e232;vertical-align:top;text-align:center;">Green
+															</td></pega:when>
+															<pega:when name="$this.OverallStatus == 'Yellow'" >
+																<td style="width:40%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;background:#f8ff11;vertical-align:top;text-align:center;">Yellow
+															</td></pega:when>	
+															<pega:when name="$this.OverallStatus == 'Red'" >                                         
+																<td style="width:40%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;background:#f2421a;vertical-align:top;text-align:center;">Red
+															</td></pega:when>	
+															<pega:when name="$this.OverallStatus == 'Grey'" >
+																<td style="width:40%; font-family: 'Open Sans',Georgia, sans-serif; font-size:14px;font-weight:400;line-height:1.4;background:#808080;vertical-align:top;text-align:center;">Grey
+															</td></pega:when>
+															<td style="width:30%;">&nbsp;</td>
+														</tr>
+													</tbody>
+												</table>											  
+											</td>
+											<td style="word-wrap:break-word;font-family: 'Open Sans',Georgia, sans-serif; width:10%; font-size:14px;font-weight:400;line-height:1.4;color:#000;vertical-align:top;text-align:left;padding:5px;"><pega:reference name="$this.LastWeek"/></td>
+										</tr>
+									</pega:forEach>	
+									</tbody>
+								</table>
+							</td>
+						</tr>						
+				</pega:forEach>
+				</table>
+					
+			</tbody>
+		</table>
+		</td>
+	</tr>
+		<!-- ======= start padding between sections ======= -->
+		<tr>
+			<td>
+			<table bgcolor="#ececec" border="0" cellpadding="0" cellspacing="0" style="background-color: #ececec;" width="100%">
+				<tbody>
+					<tr>
+						<td height="7" style="font-size: 7px; line-height: 1.4;" width="100%">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<!-- ======= END padding between sections ======= -->
+	</tbody>
+</table>
+<!-- Email Body : END --><!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]--></div>
+</center>

@@ -1,0 +1,22 @@
+Hep file heading: Utilizing SnapStart module outside of the Pega Mobile SDK
+
+https://vdaqa.rpega.com:9030/prhelp/procomhelpmain.htm?portalThreadName=STANDARD&portalName=Developer#mobile/concepts/mob-use-snapstart-module-outside-sdk-con.htm
+
+Open Work Object:
+
+https://vdaqa.rpega.com:9030/daqa/PRServlet?pyActivity=pyMobileSnapStart&Action=openWorkByHandle&InsHandle=GS-OPS-DELTA-WORK ECR-22FEB2019-1
+
+https://vdadev.rpega.com:7688/dadev/PRServlet?pyActivity=pyMobileSnapStart&pyShowFullPortal=true&pyPhoneNavRuleMainVisible=true&Action=openWorkByHandle&InsHandle=GS-OPS-DELTA-WORK ECR-22FEB2019-1
+
+
+Open Assignment:
+
+
+https://vdaqa.rpega.com:9030/daqa/PRServlet?pyActivity=pyMobileSnapStart&Action=openAssignment&InsHandle=ASSIGN-WORKLIST GS-OPS-DELTA-WORK ECR-22FEB2019-1!CREATEECR&InsClass=Assign-Worklist
+
+Download Attachment:
+
+https://vciadev.rpega.com:7333/ciadev/PRServlet?pyActivity=Work-.DisplayAttachFile&LinkedRefTo=DATA-WORKATTACH-FILE PEGASF-WORK-PROGRAM-GOLIVE OGL-1209!20181221T045247.543 GMT
+
+
+?pyActivity=Code-Security.EndSession&pzAuth=guest&redTo=ShowLogoffScreen
