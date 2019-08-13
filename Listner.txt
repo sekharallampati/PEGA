@@ -1,7 +1,1 @@
 Email processing steps.:
-
-GSOPS_Inv_devqa@pega.com
-
-leon.trefler@pega.com
-
-INV-21Dec2018-1 (1SYB5RFVD3ROK2YK) Approve
