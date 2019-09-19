@@ -1,0 +1,29 @@
+PublicAPI tools = null;
+PRThread thisThread = (PRThread)ThreadContainer.get();
+if (thisThread != null) 
+	tools = thisThread.getPublicAPI();
+else
+	throw new PRAppRuntimeException("Pega-RULES", 0, "Unable to obtain current thread");
+
+boolean valid = (OperatorID != null) && (OperatorID.length() > 0);
+if (valid)
+{
+	// open the operator record with the given id
+	ClipboardPage pg_operatorPage = tools.createPage("Data-Admin-Operator-ID", "");
+	ClipboardProperty cp_operatorId = pg_operatorPage.getProperty("pyUserIdentifier");
+	cp_operatorId.setValue(OperatorID);
+	try {
+		ClipboardPage cp = tools.getDatabase().open(pg_operatorPage, false);
+		if (cp == null)
+			valid = false;
+		else
+			valid = true;
+	}
+	catch (Exception e)
+	{
+		// if open is not successful return false
+		valid = false;
+	}
+}
+
+return valid;

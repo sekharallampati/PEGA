@@ -1,0 +1,21 @@
+<pega:choose>
+ 	<pega:when name=".Type == 'ABC'">
+		ABC
+	</pega:when>
+ 	<pega:when name=".Type == 'CAB'">
+		CAB
+	</pega:when>
+ 	<pega:otherwise>
+		BAD
+	</pega:otherwise>
+</pega:choose>
+
+<pega:forEach name=".pagelist1">
+	<pega:forEach name="$this.pagelist2">
+		<pega:when name="$this.Clor == 'Yellow'" >
+			<pega:reference name="$this.Colr"/>
+		</pega:when>
+	</pega:forEach>
+</pega:forEach>	
+	
+	

@@ -1,0 +1,5 @@
+SELECT LEVEL lvl, pyusername as "pyUserName", pyreportto as "pyReportTo", pyuseridentifier as "pyUserIdentifier" 
+, pyaccessgroup
+FROM {CLASS:Data-Admin-Operator-ID}
+CONNECT BY NOCYCLE PRIOR pyUserIdentifier = pyReportTo
+START WITH pyuseridentifier = {.pyUserIdentifier}
