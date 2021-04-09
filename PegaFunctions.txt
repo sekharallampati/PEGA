@@ -25,6 +25,7 @@ Functions:
 @Utilities.countInPageListWhen("ContainsResolved", Primary.pxResults)
 @(Pega-Gadgets:pxDataManipulate).pxStringCSVFromPageList(D_CustomerHierarchyList[type:"org",id:Param.SalesOrgID].ResultList.FinAccountList, "id")
 @Utilities.countInPageList("Active","FinEngStatus",EngPage.pxResults)
+pxConvertISODateTimeToPegaInternalFormat - function for converting date to pega format (20210408T000000.000 GMT) from ISO format (2020-04-08T00:00:00)
 
 
 
