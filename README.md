@@ -1,2 +1,3 @@
 # PEGA
-Synataxes for functions and  methods and properties
+Repository for pega knowdge documents, articles, code example etc.
+Synataxes for functions and  methods and propertie.
